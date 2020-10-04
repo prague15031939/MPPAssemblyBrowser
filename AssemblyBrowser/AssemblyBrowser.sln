@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsmBrowser", "AsmBrowser.csproj", "{765A2A4E-3767-41C8-A76C-9CECE539291E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFAssemblyBrowser", "..\WPFAssemblyBrowser\WPFAssemblyBrowser.csproj", "{090EA2F7-DB3A-472E-A978-BBD7DF112218}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{765A2A4E-3767-41C8-A76C-9CECE539291E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{765A2A4E-3767-41C8-A76C-9CECE539291E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{765A2A4E-3767-41C8-A76C-9CECE539291E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{090EA2F7-DB3A-472E-A978-BBD7DF112218}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{090EA2F7-DB3A-472E-A978-BBD7DF112218}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{090EA2F7-DB3A-472E-A978-BBD7DF112218}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{090EA2F7-DB3A-472E-A978-BBD7DF112218}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {26E3BC3E-8E41-4C20-A228-7843D8E9BCB2}
+	EndGlobalSection
+EndGlobal
