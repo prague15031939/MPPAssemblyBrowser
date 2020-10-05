@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFAssemblyBrowser"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="300">
 
     <Grid x:Name="GridMain">
         <Grid.RowDefinitions>
@@ -13,14 +13,44 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Button Grid.Column="1" Grid.Row="3" x:Name="btnMain" Content="GAC" Width="100" Height="30" Margin="10" Click="btnMainClick"/>
-        <TextBox Grid.Column="1" Grid.Row="0" x:Name="txtMain" Width="200" Height="30" Margin="10" VerticalAlignment="Top"/>
-        <TextBox Grid.Column="1" Grid.Row="1" x:Name="txtSecondary" Width="200" Height="30" Margin="10" VerticalAlignment="Top"/>
+        <Menu Grid.Row="0" Grid.Column="0" Height="20" VerticalAlignment="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Open"></MenuItem>
+                <MenuItem Header="Exit"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Help"></MenuItem>
+        </Menu>
+        <TreeView Grid.Row="1" Grid.RowSpan="13" Grid.Column="0" BorderThickness="0">
+            <TextBlock Text="namespace1"/>
+            <TreeViewItem Header="item1">
+                <TreeViewItem Header="item11"/>
+                <TreeViewItem Header="item12"/>
+                <TreeViewItem Header="item13"/>
+            </TreeViewItem>
+            <TreeViewItem Header="item2">
+                <TreeViewItem Header="item21"/>
+                <TreeViewItem Header="item22"/>
+                <TreeViewItem Header="item23"/>
+            </TreeViewItem>
+            <TreeViewItem Header="item3">
+                <TreeViewItem Header="item31"/>
+                <TreeViewItem Header="item32"/>
+                <TreeViewItem Header="item33"/>
+            </TreeViewItem>
+        </TreeView>
     </Grid>
 </Window>
