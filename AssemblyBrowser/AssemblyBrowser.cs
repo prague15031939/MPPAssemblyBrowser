@@ -17,7 +17,6 @@ namespace AsmBrowser
             AddingMethods.Add(MemberTypes.Field, AddField);
             AddingMethods.Add(MemberTypes.Property, AddProperty);
             AddingMethods.Add(MemberTypes.Method, AddMethod);
-
         }
 
         public BrowserResult Browse(string AssemblyPath)

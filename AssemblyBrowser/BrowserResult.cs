@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace AsmBrowser
 {
@@ -23,29 +24,59 @@ namespace AsmBrowser
     public class DataType
     {
         public string FullName { get; set; }
-        public ObservableCollection<Member> Members { get; } = new ObservableCollection<Member>();
+        public ObservableCollection<IMember> Members { get; } = new ObservableCollection<IMember>();
     }
 
-    public class Member
+    public class AssemblyField : IMember
     {
+        public Type type { get; set; }
         public string Name { get; set; }
         public string Accessor { get; set; }
+        public string StringForm
+        {
+            get
+            {
+                return $"{Accessor} {type.Name} {Name}";
+            }
+        }
     }
 
-    public class AssemblyField : Member
+    public class AssemblyProperty : IMember
     {
         public Type type { get; set; }
+        public string Name { get; set; }
+        public string Accessor { get; set; }
+        public string StringForm
+        {
+            get
+            {
+                return $"{Accessor} {type.Name} {Name}";
+            }
+        }
     }
 
-    public class AssemblyProperty : Member
-    {
-        public Type type { get; set; }
-    }
-
-    public class AssemblyMethod : Member
+    public class AssemblyMethod : IMember
     {
         public Type ReturnType { get; set; }
+        public string Name { get; set; }
+        public string Accessor { get; set; }
+
         public List<ParameterInfo> Parameters;
+        public string StringForm
+        {
+            get
+            {
+                StringBuilder builder = new StringBuilder("(");
+                foreach (ParameterInfo param in Parameters)
+                {
+                    if (Parameters.IndexOf(param) != 0)
+                        builder.Append(", ");
+                    builder.Append($"{param.ParameterType.Name} {param.Name}");
+                }
+                builder.Append(")");
+                return $"{Accessor} {ReturnType.Name} {Name}" + builder.ToString();
+            }
+        }
     }
 
 }

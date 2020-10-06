@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFAssemblyBrowser"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="500">
+        Title="MainWindow" Height="450" Width="700">
 
     <Grid x:Name="GridMain">
         <Grid.RowDefinitions>
@@ -20,7 +20,7 @@
             <MenuItem Header="Help"></MenuItem>
         </Menu>
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="1">
             <StackPanel>
                 <TextBlock Text="{Binding AssemblyFullName}" Margin="30 5 0 0"/>
                 <TreeView ItemsSource="{Binding AssemblyInfo}" Padding="0 0 0 0" BorderThickness="0">
@@ -32,7 +32,7 @@
                                         <TreeViewItem Header="{Binding FullName}" ItemsSource="{Binding Members}" BorderThickness="0">
                                             <TreeViewItem.ItemTemplate>
                                                 <DataTemplate>
-                                                    <TextBlock Text="{Binding Name}"/>
+                                                    <TextBlock Text="{Binding StringForm}"/>
                                                 </DataTemplate>
                                             </TreeViewItem.ItemTemplate>
                                         </TreeViewItem>
