@@ -17,40 +17,28 @@ namespace AsmBrowser
 
     public class Namespace
     { 
-        public string FullName { get; set; }
+        public string Name { get; set; }
         public ObservableCollection<DataType> DataTypes { get; } = new ObservableCollection<DataType>();
     }
 
     public class DataType
     {
+        public string Name { get; set; }
         public string FullName { get; set; }
         public ObservableCollection<IMember> Members { get; } = new ObservableCollection<IMember>();
     }
 
-    public class AssemblyField : IMember
+    public class AssemblyDataMember : IMember
     {
         public Type type { get; set; }
         public string Name { get; set; }
         public string Accessor { get; set; }
+        public string Note { get; set; }
         public string StringForm
         {
             get
             {
-                return $"{Accessor} {type.Name} {Name}";
-            }
-        }
-    }
-
-    public class AssemblyProperty : IMember
-    {
-        public Type type { get; set; }
-        public string Name { get; set; }
-        public string Accessor { get; set; }
-        public string StringForm
-        {
-            get
-            {
-                return $"{Accessor} {type.Name} {Name}";
+                return $"{Note}: {Accessor} {type.Name} {Name}";
             }
         }
     }
@@ -59,6 +47,7 @@ namespace AsmBrowser
     {
         public Type ReturnType { get; set; }
         public string Name { get; set; }
+        public string Note { get; set; }
         public string Accessor { get; set; }
 
         public List<ParameterInfo> Parameters;
@@ -74,7 +63,7 @@ namespace AsmBrowser
                     builder.Append($"{param.ParameterType.Name} {param.Name}");
                 }
                 builder.Append(")");
-                return $"{Accessor} {ReturnType.Name} {Name}" + builder.ToString();
+                return $"{Note}: {Accessor} {ReturnType.Name} {Name}" + builder.ToString();
             }
         }
     }

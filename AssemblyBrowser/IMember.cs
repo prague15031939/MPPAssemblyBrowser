@@ -10,6 +10,7 @@ namespace AsmBrowser
     {
         string Name { get; set; }
         string Accessor { get; set; }
+        string Note { get; set; }
         string StringForm { get; }
     }
 

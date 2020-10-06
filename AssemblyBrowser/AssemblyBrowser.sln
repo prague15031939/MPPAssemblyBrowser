@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsmBrowser", "AsmBrowser.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFAssemblyBrowser", "..\WPFAssemblyBrowser\WPFAssemblyBrowser.csproj", "{090EA2F7-DB3A-472E-A978-BBD7DF112218}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "..\UnitTests\UnitTests.csproj", "{4AA373CC-2AA2-4E1C-960B-6A8A7EC905E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{090EA2F7-DB3A-472E-A978-BBD7DF112218}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{090EA2F7-DB3A-472E-A978-BBD7DF112218}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{090EA2F7-DB3A-472E-A978-BBD7DF112218}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AA373CC-2AA2-4E1C-960B-6A8A7EC905E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AA373CC-2AA2-4E1C-960B-6A8A7EC905E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AA373CC-2AA2-4E1C-960B-6A8A7EC905E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AA373CC-2AA2-4E1C-960B-6A8A7EC905E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
