@@ -16,7 +16,8 @@ namespace WPFAssemblyBrowser
         {
             get
             {
-                return openFileCommand ?? (openFileCommand = new RelayCommand(obj => {
+                return openFileCommand ?? (openFileCommand = new RelayCommand(obj =>
+                {
                     IDialogService dialogService = new DefaultDialogService();
                     if (dialogService.OpenFile())
                     {
@@ -24,6 +25,23 @@ namespace WPFAssemblyBrowser
                         BrowseAssembly();
                     }
                 }));
+            }
+        }
+
+        private RelayCommand closeWindowCommand;
+        public RelayCommand CloseWindowCommand
+        {
+            get
+            {
+                return closeWindowCommand ??
+                    (closeWindowCommand = new RelayCommand(obj =>
+                    {
+                        Window wnd = obj as Window;
+                        if (wnd != null)
+                        {
+                            wnd.Close();
+                        }
+                    }));
             }
         }
 
