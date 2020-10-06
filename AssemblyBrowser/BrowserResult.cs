@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -9,19 +10,20 @@ namespace AsmBrowser
 {
     public class BrowserResult
     {
-        public List<Namespace> Namespaces = new List<Namespace>();
+        public string FullName { get; set; }
+        public ObservableCollection<Namespace> Namespaces { get; } = new ObservableCollection<Namespace>();
     }
 
     public class Namespace
     { 
         public string FullName { get; set; }
-        public List<DataType> DataTypes = new List<DataType>();
+        public ObservableCollection<DataType> DataTypes { get; } = new ObservableCollection<DataType>();
     }
 
     public class DataType
     {
         public string FullName { get; set; }
-        public List<Member> Members = new List<Member>();
+        public ObservableCollection<Member> Members { get; } = new ObservableCollection<Member>();
     }
 
     public class Member

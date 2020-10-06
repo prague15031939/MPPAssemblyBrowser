@@ -24,12 +24,13 @@ namespace AsmBrowser
         {
             result = new BrowserResult();
             Assembly asm = Assembly.LoadFrom(AssemblyPath);
+            result.FullName = asm.FullName;
             List<Type> AssemblyTypes = asm.GetTypes().ToList();
 
             foreach (Type type in AssemblyTypes)
             {
                 string nsName = type.Namespace;
-                if (!result.Namespaces.Exists(obj => obj.FullName == nsName))
+                if (!result.Namespaces.ToList().Exists(obj => obj.FullName == nsName))
                 {
                     Namespace ns = new Namespace();
                     ns.FullName = nsName;
@@ -38,7 +39,7 @@ namespace AsmBrowser
 
                 Namespace NamespaceItem = result.Namespaces.Single(obj => obj.FullName == nsName);
                 string tName = type.FullName;
-                if (!NamespaceItem.DataTypes.Exists(obj => obj.FullName == tName))
+                if (!NamespaceItem.DataTypes.ToList().Exists(obj => obj.FullName == tName))
                 {
                     DataType dt = new DataType();
                     dt.FullName = tName;
@@ -54,7 +55,8 @@ namespace AsmBrowser
 
         private void AddMember(Type DeclaringType, DataType DataTypeItem)
         {
-            foreach (MemberInfo member in DeclaringType.GetMembers(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+            BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Static;
+            foreach (MemberInfo member in DeclaringType.GetMembers(flags))
             {
                 if (AddingMethods.ContainsKey(member.MemberType))
                     AddingMethods[member.MemberType](member, DataTypeItem);
@@ -81,15 +83,12 @@ namespace AsmBrowser
 
         private void AddMethod(MemberInfo member, DataType DataTypeItem)
         {
-            if (!typeof(object).GetMethods().ToList().Exists(obj => obj.Name == (member as MethodInfo).Name))
-            {
-                AssemblyMethod method = new AssemblyMethod();
-                method.Accessor = GetAccessor(member);
-                method.Name = (member as MethodInfo).Name;
-                method.ReturnType = (member as MethodInfo).ReturnType;
-                method.Parameters = (member as MethodInfo).GetParameters().ToList();
-                DataTypeItem.Members.Add(method);
-            }
+            AssemblyMethod method = new AssemblyMethod();
+            method.Accessor = GetAccessor(member);
+            method.Name = (member as MethodInfo).Name;
+            method.ReturnType = (member as MethodInfo).ReturnType;
+            method.Parameters = (member as MethodInfo).GetParameters().ToList();
+            DataTypeItem.Members.Add(method);
         }
 
         public static string GetAccessor(MemberInfo member)
