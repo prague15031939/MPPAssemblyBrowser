@@ -23,9 +23,17 @@ namespace AsmBrowser
 
         public BrowserResult Browse(string AssemblyPath)
         {
-            result = new BrowserResult();
-            Assembly asm = Assembly.LoadFrom(AssemblyPath);
-            result.FullName = asm.FullName;
+            Assembly asm;
+            try
+            {
+                asm = Assembly.LoadFrom(AssemblyPath);
+            }
+            catch
+            {
+                return null;
+            }
+
+            result = new BrowserResult() { FullName = asm.FullName };
             List<Type> AssemblyTypes = asm.GetTypes().ToList();
 
             foreach (Type type in AssemblyTypes)

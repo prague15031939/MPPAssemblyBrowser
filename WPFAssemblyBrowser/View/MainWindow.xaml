@@ -27,7 +27,7 @@
                 <TreeView ItemsSource="{Binding AssemblyInfo}" Padding="0 0 0 0" BorderThickness="0">
                     <TreeView.ItemTemplate>
                         <DataTemplate>
-                            <TreeViewItem Header="{Binding Name}" ItemsSource="{Binding DataTypes}" BorderThickness="0" IsExpanded="True">
+                            <TreeViewItem Header="{Binding Name}" ItemsSource="{Binding DataTypes}" BorderThickness="0">
                                 <TreeViewItem.ItemTemplate>
                                     <DataTemplate>
                                         <TreeViewItem Header="{Binding Name}" ItemsSource="{Binding Members}" BorderThickness="0" IsExpanded="True">

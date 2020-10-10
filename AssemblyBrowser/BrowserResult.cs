@@ -12,20 +12,20 @@ namespace AsmBrowser
     public class BrowserResult
     {
         public string FullName { get; set; }
-        public ObservableCollection<Namespace> Namespaces { get; } = new ObservableCollection<Namespace>();
+        public List<Namespace> Namespaces { get; } = new List<Namespace>();
     }
 
     public class Namespace
     { 
         public string Name { get; set; }
-        public ObservableCollection<DataType> DataTypes { get; } = new ObservableCollection<DataType>();
+        public List<DataType> DataTypes { get; } = new List<DataType>();
     }
 
     public class DataType
     {
         public string Name { get; set; }
         public string FullName { get; set; }
-        public ObservableCollection<IMember> Members { get; } = new ObservableCollection<IMember>();
+        public List<IMember> Members { get; } = new List<IMember>();
     }
 
     public class AssemblyDataMember : IMember

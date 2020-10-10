@@ -56,8 +56,8 @@ namespace WPFAssemblyBrowser
             }
         }
 
-        private ObservableCollection<Namespace> asmInfo;
-        public ObservableCollection<Namespace> AssemblyInfo
+        private List<Namespace> asmInfo;
+        public List<Namespace> AssemblyInfo
         {
             get { return asmInfo; }
             set
