@@ -74,22 +74,28 @@ namespace AsmBrowser
 
         private void AddField(MemberInfo member, DataType DataTypeItem)
         {
-            AssemblyDataMember field = new AssemblyDataMember();
-            field.Note = "f";
-            field.Accessor = GetAccessor(member);
-            field.Name = (member as FieldInfo).Name;
-            field.type = (member as FieldInfo).FieldType;
-            DataTypeItem.Members.Add(field);
+            if (!(member as FieldInfo).IsDefined(typeof(CompilerGeneratedAttribute)))
+            {
+                AssemblyDataMember field = new AssemblyDataMember();
+                field.Note = "f";
+                field.Accessor = GetAccessor(member);
+                field.Name = (member as FieldInfo).Name;
+                field.type = (member as FieldInfo).FieldType;
+                DataTypeItem.Members.Add(field);
+            }
         }
 
         private void AddProperty(MemberInfo member, DataType DataTypeItem)
         {
-            AssemblyDataMember property = new AssemblyDataMember();
-            property.Note = "p";
-            property.Accessor = GetAccessor(member);
-            property.Name = (member as PropertyInfo).Name;
-            property.type = (member as PropertyInfo).PropertyType;
-            DataTypeItem.Members.Add(property);
+            if (!(member as PropertyInfo).IsDefined(typeof(CompilerGeneratedAttribute)))
+            {
+                AssemblyDataMember property = new AssemblyDataMember();
+                property.Note = "p";
+                property.Accessor = GetAccessor(member);
+                property.Name = (member as PropertyInfo).Name;
+                property.type = (member as PropertyInfo).PropertyType;
+                DataTypeItem.Members.Add(property);
+            }
         }
 
         private void AddMethod(MemberInfo member, DataType DataTypeItem)
@@ -104,13 +110,16 @@ namespace AsmBrowser
 
         private void AddDefaultMethod(MemberInfo member, DataType DataTypeItem, string Note)
         {
-            AssemblyMethod method = new AssemblyMethod();
-            method.Note = Note;
-            method.Accessor = GetAccessor(member);
-            method.Name = (member as MethodInfo).Name;
-            method.ReturnType = (member as MethodInfo).ReturnType;
-            method.Parameters = (member as MethodInfo).GetParameters().ToList();
-            DataTypeItem.Members.Add(method);
+            if (!(member as MethodInfo).IsDefined(typeof(CompilerGeneratedAttribute)))
+            {
+                AssemblyMethod method = new AssemblyMethod();
+                method.Note = Note;
+                method.Accessor = GetAccessor(member);
+                method.Name = (member as MethodInfo).Name;
+                method.ReturnType = (member as MethodInfo).ReturnType;
+                method.Parameters = (member as MethodInfo).GetParameters().ToList();
+                DataTypeItem.Members.Add(method);
+            }
         }
 
         private void AddExtensionMethod(MethodInfo method)
@@ -129,9 +138,7 @@ namespace AsmBrowser
 
         public static bool isExtensionMethod(MethodInfo method)
         {
-            if (method.IsDefined(typeof(ExtensionAttribute), false) && method.DeclaringType.IsDefined(typeof(ExtensionAttribute), false))
-                return true;
-            return false;
+            return method.IsDefined(typeof(ExtensionAttribute), false) && method.DeclaringType.IsDefined(typeof(ExtensionAttribute), false);
         }
 
         public static string GetAccessor(MemberInfo member)

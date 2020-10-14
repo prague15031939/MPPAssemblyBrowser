@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,7 +39,7 @@ namespace AsmBrowser
         {
             get
             {
-                return $"{Note}: {Accessor} {type.Name} {Name}";
+                return $"{Note}: {Accessor} {type.CustomGetType()} {Name}";
             }
         }
     }
@@ -60,10 +61,10 @@ namespace AsmBrowser
                 {
                     if (Parameters.IndexOf(param) != 0)
                         builder.Append(", ");
-                    builder.Append($"{param.ParameterType.Name} {param.Name}");
+                    builder.Append($"{param.ParameterType.CustomGetType()} {param.Name}");
                 }
                 builder.Append(")");
-                return $"{Note}: {Accessor} {ReturnType.Name} {Name}" + builder.ToString();
+                return $"{Note}: {Accessor} {ReturnType.CustomGetType()} {Name}" + builder.ToString();
             }
         }
     }
