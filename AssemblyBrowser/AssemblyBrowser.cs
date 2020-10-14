@@ -38,6 +38,8 @@ namespace AsmBrowser
 
             foreach (Type type in AssemblyTypes)
             {
+                if (isDisplayClass(type)) continue;
+
                 string nsName = type.Namespace;
                 if (!result.Namespaces.ToList().Exists(obj => obj.Name == nsName))
                 {
@@ -126,7 +128,7 @@ namespace AsmBrowser
         {
             Type ExpandableType = method.GetParameters()[0].ParameterType;
             foreach (Namespace ns in result.Namespaces)
-            { 
+            {
                 if (ns.DataTypes.ToList().Exists(obj => obj.FullName == ExpandableType.FullName))
                 {
                     DataType dt = ns.DataTypes.Single(obj => obj.FullName == ExpandableType.FullName);
@@ -139,6 +141,11 @@ namespace AsmBrowser
         public static bool isExtensionMethod(MethodInfo method)
         {
             return method.IsDefined(typeof(ExtensionAttribute), false) && method.DeclaringType.IsDefined(typeof(ExtensionAttribute), false);
+        }
+
+        public static bool isDisplayClass(Type type)
+        {
+            return type.Name.Contains('<') || type.Name.Contains('>');
         }
 
         public static string GetAccessor(MemberInfo member)

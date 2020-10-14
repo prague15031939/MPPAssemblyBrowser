@@ -35,11 +35,14 @@ namespace AsmBrowser
         public string Name { get; set; }
         public string Accessor { get; set; }
         public string Note { get; set; }
+        private string _StringForm = null;
         public string StringForm
         {
             get
             {
-                return $"{Note}: {Accessor} {type.CustomGetType()} {Name}";
+                if (_StringForm == null)
+                    _StringForm = $"{Note}: {Accessor} {type.CustomGetType()} {Name}";
+                return _StringForm;
             }
         }
     }
@@ -50,21 +53,25 @@ namespace AsmBrowser
         public string Name { get; set; }
         public string Note { get; set; }
         public string Accessor { get; set; }
-
         public List<ParameterInfo> Parameters;
+        private string _StringForm;
         public string StringForm
         {
             get
             {
-                StringBuilder builder = new StringBuilder("(");
-                foreach (ParameterInfo param in Parameters)
+                if (_StringForm == null)
                 {
-                    if (Parameters.IndexOf(param) != 0)
-                        builder.Append(", ");
-                    builder.Append($"{param.ParameterType.CustomGetType()} {param.Name}");
+                    StringBuilder builder = new StringBuilder("(");
+                    foreach (ParameterInfo param in Parameters)
+                    {
+                        if (Parameters.IndexOf(param) != 0)
+                            builder.Append(", ");
+                        builder.Append($"{param.ParameterType.CustomGetType()} {param.Name}");
+                    }
+                    builder.Append(")");
+                    _StringForm =  $"{Note}: {Accessor} {ReturnType.CustomGetType()} {Name}" + builder.ToString();
                 }
-                builder.Append(")");
-                return $"{Note}: {Accessor} {ReturnType.CustomGetType()} {Name}" + builder.ToString();
+                return _StringForm;
             }
         }
     }
